@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101012">
+<meta name="description" content="LAND PART؛ فروشگاه تخصصی قطعات تریلی، زیربندی SAF و BPW، لوازم ترمز، کیسه باد و تجهیزات کشنده.">
+<title>LAND PART | قطعات تخصصی تریلی</title>
+
+<style>
+:root {
+  --red:#e5252a;
+  --red2:#ff4549;
+  --gold:#d9ad61;
+  --bg:#101012;
+  --panel:#19191d;
+  --muted:#a7a7ae;
+  --line:#303035;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;background:var(--bg);color:#f8f6f1;
+  font-family:Tahoma,Arial,sans-serif;
+  overflow-x:hidden;line-height:1.8
+}
+body.loading{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin:auto}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}
+.section{padding:82px 0}
+.section-head{
+ display:flex;align-items:end;justify-content:space-between;
+ gap:20px;margin-bottom:30px
+}
+.section-head h2{font-size:clamp(24px,4vw,37px);margin:8px 0}
+.section-head p{color:var(--muted);margin:0;font-size:14px}
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ border:1px solid transparent;padding:12px 20px;border-radius:9px;
+ font-weight:bold;transition:.2s
+}
+.btn-red{background:var(--red);color:white}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-outline{border-color:#555;background:#ffffff08;color:#fff}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-gold{background:var(--gold);color:#16120b}
+button:focus-visible,a:focus-visible,input:focus-visible{
+ outline:2px solid var(--gold);outline-offset:3px
+}
+
+/* cinematic intro */
+#intro{
+ position:fixed;inset:0;z-index:9999;background:#09090b;
+ display:flex;align-items:center;justify-content:center;
+ transition:opacity .65s,visibility .65s
+}
+#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{text-align:center;width:min(360px,85%)}
+.intro-mark{
+ width:78px;height:78px;margin:auto auto 20px;border:2px solid var(--gold);
+ display:grid;place-items:center;transform:rotate(45deg);
+ box-shadow:0 0 35px #d9ad6120;animation:markIn 1s ease both
+}
+.intro-mark span{transform:rotate(-45deg);font-size:26px;font-weight:900;color:var(--gold)}
+.intro-name{font-size:29px;letter-spacing:3px;font-weight:900}
+.intro-name b{color:var(--red)}
+.intro-sub{font-size:10px;letter-spacing:3px;color:#a7a7ae}
+.loader-track{height:2px;background:#28282c;margin-top:32px;overflow:hidden}
+.loader-bar{height:100%;width:0;background:var(--gold);animation:load 1.5s ease forwards}
+.loader-label{font-size:10px;color:#999;margin-top:10px;letter-spacing:2px}
+@keyframes load{to{width:100%}}
+@keyframes markIn{from{opacity:0;transform:rotate(15deg) scale(.5)}to{opacity:1;transform:rotate(45deg) scale(1)}}
+
+/* header */
+header{
+ position:sticky;top:0;z-index:100;background:#101012ed;
+ backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand-icon{
+ width:40px;height:40px;background:var(--red);
+ display:grid;place-items:center;font-size:22px;
+ clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)
+}
+.brand-title{font-weight:900;font-size:20px;letter-spacing:1px}
+.brand-title span{color:var(--gold)}
+.brand small{display:block;font-size:9px;color:var(--muted);letter-spacing:2px}
+.nav-links{display:flex;gap:23px;font-size:13px;color:#c8c8cb}
+.nav-links a:hover{color:var(--gold)}
+.nav-actions{display:flex;gap:9px;align-items:center}
+.menu-toggle{display:none;background:none;color:white;border:1px solid #444;padding:8px 12px;border-radius:8px}
+
+/* hero */
+.hero{
+ position:relative;min-height:650px;display:flex;align-items:center;
+ isolation:isolate;overflow:hidden;background:#111
+}
+.hero-bg{
+ position:absolute;inset:0;z-index:-3;
+ background-image:url('https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=2000');
+ background-size:cover;background-position:center 54%;
+ animation:roadCamera 22s ease-in-out infinite alternate
+}
+.hero:before{
+ content:"";position:absolute;inset:0;z-index:-2;
+ background:linear-gradient(270deg,#101012 0%,#101012ed 25%,#10101270 61%,#10101235 100%)
+}
+.hero:after{
+ content:"";position:absolute;inset:auto 0 0;height:140px;z-index:-1;
+ background:linear-gradient(transparent,var(--bg))
+}
+@keyframes roadCamera{
+ from{transform:scale(1) translateX(0)}
+ to{transform:scale(1.09) translateX(-1.5%)}
+}
+.hero-content{max-width:670px;padding:80px 0 100px}
+.hero-badge{
+ display:inline-flex;align-items:center;gap:8px;padding:7px 12px;
+ border:1px solid #d9ad6150;background:#16120b8c;color:var(--gold);
+ font-size:11px;border-radius:3px
+}
+.live-dot{width:7px;height:7px;background:#65d39a;border-radius:50%;box-shadow:0 0 12px #65d39a}
+.hero h1{font-size:clamp(38px,6.5vw,72px);line-height:1.35;margin:22px 0;font-weight:900}
+.hero h1 span{color:var(--gold)}
+.hero p{max-width:530px;color:#d0cfd0;font-size:15px;line-height:2.2}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-stats{
+ display:flex;gap:35px;flex-wrap:wrap;margin-top:50px;padding-top:24px;
+ border-top:1px solid #ffffff25
+}
+.stat strong{display:block;font-size:20px;color:var(--gold)}
+.stat span{font-size:11px;color:#c1c1c5}
+.road-light{
+ position:absolute;bottom:0;left:0;width:100%;height:4px;
+ background:linear-gradient(90deg,transparent,var(--gold),var(--red),transparent);
+ opacity:.75;animation:lightSweep 4s linear infinite
+}
+@keyframes lightSweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* ticker */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:#141416}
+.ticker-track{
+ display:flex;width:max-content;gap:42px;padding:14px 0;
+ animation:ticker 30s linear infinite;color:#c6c5c1;font-size:12px
+}
+.ticker-track span:before{content:"✦";color:var(--gold);margin-left:12px}
+@keyframes ticker{to{transform:translateX(50%)}}
+
+/* categories */
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.cat{
+ min-height:150px;position:relative;overflow:hidden;padding:23px;
+ border:1px solid var(--line);border-radius:13px;
+ background:linear-gradient(140deg,#242428,#151518);
+ transition:.25s
+}
+.cat:after{
+ content:"";position:absolute;width:90px;height:90px;left:-25px;bottom:-35px;
+ border:1px solid #d9ad6130;border-radius:50%;box-shadow:0 0 0 14px #d9ad6108
+}
+.cat:hover{transform:translateY(-5px);border-color:#b98b45}
+.cat-icon{font-size:27px;color:var(--gold)}
+.cat h3{font-size:16px;margin:12px 0 3px}
+.cat p{font-size:11px;color:var(--muted);margin:0}
+.cat .arrow{position:absolute;top:20px;left:20px;color:var(--gold)}
+
+/* search and products */
+.shop-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.search-box{flex:1;min-width:220px;position:relative}
+.search-box input{
+ width:100%;padding:14px 44px 14px 14px;background:#19191d;
+ color:white;border:1px solid var(--line);border-radius:9px
+}
+.search-icon{position:absolute;right:15px;top:12px;color:var(--gold)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filter{
+ background:#19191d;border:1px solid #38383d;color:#d3d3d6;
+ padding:8px 13px;border-radius:7px;font-size:12px
+}
+.filter.active,.filter:hover{background:#3a191a;border-color:var(--red);color:white}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.product{
+ overflow:hidden;border:1px solid var(--line);border-radius:13px;
+ background:var(--panel);transition:transform .25s,border-color .25s
+}
+.product:hover{transform:translateY(-5px);border-color:#a27b42}
+.product-image{height:235px;position:relative;background:#f4f4f1;overflow:hidden}
+.product-image img{
+ width:100%;height:100%;object-fit:contain;padding:13px;
+ transition:transform .45s
+}
+.product:hover .product-image img{transform:scale(1.05)}
+.product-tag{
+ position:absolute;top:12px;right:12px;background:#171719e8;
+ color:var(--gold);font-size:10px;padding:5px 9px;border-radius:4px
+}
+.product-body{padding:18px}
+.product-body h3{font-size:16px;margin:0 0 9px}
+.product-body p{font-size:12px;color:var(--muted);min-height:43px;margin:0 0 16px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price-label{font-size:12px;color:var(--gold)}
+.product-bottom .btn{padding:9px 12px;font-size:11px}
+.empty-state{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted);border:1px dashed #444;border-radius:12px}
+
+/* real-world trust panel */
+.feature-panel{
+ display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;
+ border:1px solid var(--line);border-radius:18px;overflow:hidden;
+ background:linear-gradient(135deg,#1d1d21,#111113)
+}
+.feature-copy{padding:35px}
+.feature-copy h2{font-size:30px;line-height:1.7}
+.feature-copy p{color:var(--muted);font-size:13px;line-height:2.2}
+.feature-photo{height:360px;position:relative;overflow:hidden;background:#222}
+.feature-photo img{width:100%;height:100%;object-fit:cover}
+.feature-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#19191d40,transparent)}
+
+/* inquiry */
+.inquiry{
+ position:relative;overflow:hidden;border:1px solid #5d4528;
+ background:radial-gradient(ellipse at left,#4b171a,#1b1715 52%,#151517);
+ padding:45px;border-radius:16px;display:flex;align-items:center;
+ justify-content:space-between;gap:25px
+}
+.inquiry h2{font-size:clamp(23px,4vw,35px);margin:5px 0}
+.inquiry p{color:#c5c0ba;font-size:13px}
+.inquiry-mark{font-size:90px;color:#d9ad6120;line-height:1}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:38px 0 20px;background:#0c0c0e}
+.footer-main{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;padding-bottom:28px}
+.footer-main p{color:var(--muted);font-size:12px;max-width:340px}
+.footer-links{display:flex;gap:17px;flex-wrap:wrap;font-size:12px;color:#c6c6c9}
+.footer-links a:hover{color:var(--gold)}
+.copyright{border-top:1px solid #ffffff12;padding-top:18px;color:#777;font-size:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.whatsapp-float{
+ position:fixed;z-index:90;bottom:20px;left:20px;width:55px;height:55px;
+ border-radius:50%;background:#20bf70;color:white;display:grid;place-items:center;
+ font-size:24px;box-shadow:0 8px 30px #0008;border:1px solid #ffffff35;
+ transition:transform .2s
+}
+.whatsapp-float:hover{transform:scale(1.08)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(min-width:1100px){
+ .hero{min-height:720px}
+}
+@media(max-width:850px){
+ .nav-links{display:none;position:absolute;top:76px;right:0;left:0;background:#111;padding:20px 5%;border-bottom:1px solid var(--line);flex-direction:column;gap:15px}
+ .nav-links.open{display:flex}
+ .menu-toggle{display:block}
+ .nav-actions>.btn{display:none}
+ .hero{min-height:620px}
+ .hero:before{background:linear-gradient(270deg,#101012f5,#101012bd 65%,#10101265)}
+ .categories{grid-template-columns:repeat(2,1fr)}
+ .products{grid-template-columns:repeat(2,1fr)}
+ .feature-panel{grid-template-columns:1fr}
+ .feature-photo{height:290px;grid-row:1}
+}
+@media(max-width:520px){
+ .nav{height:66px}
+ .nav-links{top:66px}
+ .brand-title{font-size:17px}
+ .brand-icon{width:35px;height:35px}
+ .hero{min-height:600px}
+ .hero-content{padding:65px 0 75px}
+ .hero h1{font-size:38px}
+ .hero p{font-size:13px}
+ .hero-stats{gap:20px;margin-top:35px}
+ .section{padding:58px 0}
+ .section-head{align-items:start;flex-direction:column}
+ .categories{gap:10px}
+ .cat{padding:16px;min-height:135px}
+ .cat h3{font-size:13px}
+ .products{grid-template-columns:1fr}
+ .product-image{height:250px}
+ .inquiry{padding:25px;align-items:flex-start;flex-direction:column}
+ .inquiry-mark{display:none}
+ .feature-copy{padding:24px}
+ .feature-copy h2{font-size:25px}
+ .whatsapp-float{width:49px;height:49px;bottom:14px;left:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+
+<body class="loading">
+
+<!-- Cinematic intro: guaranteed to disappear -->
+<div id="intro" aria-label="در حال ورود به فروشگاه">
+  <div class="intro-inner">
+    <div class="intro-mark"><span>LP</span></div>
+    <div class="intro-name">LAND <b>PART</b></div>
+    <div class="intro-sub">TRAILER PARTS SPECIALIST</div>
+    <div class="loader-track"><div class="loader-bar"></div></div>
+    <div class="loader-label">PREPARING YOUR JOURNEY</div>
+  </div>
+</div>
+
+<header>
+ <div class="container nav">
+  <a class="brand" href="#home" aria-label="صفحه اصلی لند پارت">
+   <div class="brand-icon">L</div>
+   <div><div class="brand-title">LAND <span>PART</span></div><small>TRAILER PARTS</small></div>
+  </a>
+  <nav class="nav-links" id="navLinks">
+   <a href="#home">صفحه اصلی</a>
+   <a href="#categories">دسته‌بندی قطعات</a>
+   <a href="#products">محصولات</a>
+   <a href="#about">درباره فروشگاه</a>
+   <a href="#contact">تماس با ما</a>
+  </nav>
+  <div class="nav-actions">
+   <a class="btn btn-red" href="#products">مشاهده قطعات ↙</a>
+   <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو" aria-expanded="false">☰</button>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-bg" role="img" aria-label="کامیون کشنده قرمز در حال حرکت در جاده"></div>
+ <div class="container">
+  <div class="hero-content">
+   <div class="hero-badge"><span class="live-dot"></span> فروشگاه تخصصی قطعات تریلی و کشنده</div>
+   <h1>قدرت در جاده،<br><span>اطمینان در هر قطعه.</span></h1>
+   <p>
+    از زیربندی و سیستم ترمز تا کیسه باد، چراغ و تجهیزات تانکر؛
+    برای پیدا کردن قطعه موردنیازت، از اینجا شروع کن.
+   </p>
+   <div class="hero-buttons">
+    <a class="btn btn-red" href="#products">مشاهده محصولات <span>←</span></a>
+    <a class="btn btn-outline" href="#contact">استعلام و مشاوره</a>
+   </div>
+   <div class="hero-stats">
+    <div class="stat"><strong>SAF / BPW</strong><span>قطعات زیربندی</span></div>
+    <div class="stat"><strong>LAND PART</strong><span>تخصص در قطعات تریلی</span></div>
+    <div class="stat"><strong>استعلام</strong><span>قیمت از طریق واتساپ</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="road-light"></div>
+</section>
+
+<div class="ticker" aria-label="دسته‌های محصولات">
+ <div class="ticker-track">
+  <span>زیربندی SAF</span><span>زیربندی BPW</span><span>لوازم کالیپر</span>
+  <span>کیسه باد</span><span>لوازم تانکر</span><span>لنت ترمز</span>
+  <span>چراغ خطر</span><span>تزیینات کشنده</span>
+  <span>زیربندی SAF</span><span>زیربندی BPW</span><span>لوازم کالیپر</span>
+  <span>کیسه باد</span><span>لوازم تانکر</span><span>لنت ترمز</span>
+  <span>چراغ خطر</span><span>تزیینات کشنده</span>
+ </div>
+</div>
+
+<section class="section" id="categories">
+ <div class="container reveal">
+  <div class="section-head">
+   <div><div class="eyebrow">EXPLORE CATEGORIES / 01</div><h2>قطعه موردنیازت رو پیدا کن</h2>
+   <p>مستقیم وارد دسته‌بندی موردنظرت شو.</p></div>
+  </div>
+  <div class="categories">
+   <a class="cat" href="#products" data-category-link="زیربندی SAF">
+    <div class="cat-icon">⚙</div><h3>زیربندی SAF / BPW</h3><p>محور، تعلیق و متعلقات</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="ترمز و کالیپر">
+    <div class="cat-icon">◉</div><h3>ترمز و کالیپر</h3><p>کالیپر، لنت و متعلقات</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="کیسه باد">
+    <div class="cat-icon">◌</div><h3>کیسه باد</h3><p>قطعات سیستم تعلیق بادی</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="تجهیزات تانکر">
+    <div class="cat-icon">▤</div><h3>تجهیزات تانکر</h3><p>لوازم و اتصالات تانکر</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="چراغ و برق">
+    <div class="cat-icon">✧</div><h3>چراغ و برق</h3><p>چراغ خطر و روشنایی</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="تزیینات">
+    <div class="cat-icon">✦</div><h3>تزیینات کشنده</h3><p>لوازم ظاهری و جانبی</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#products" data-category-link="لوازم کشنده">
+    <div class="cat-icon">▧</div><h3>لوازم کشنده</h3><p>تجهیزات جانبی کشنده</p><span class="arrow">↖</span>
+   </a>
+   <a class="cat" href="#contact">
+    <div class="cat-icon">＋</div><h3>قطعه خاص می‌خوای؟</h3><p>اسم یا عکس قطعه رو بفرست</p><span class="arrow">↖</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="products" style="padding-top:20px">
+ <div class="container reveal">
+  <div class="section-head">
+   <div><div class="eyebrow">PARTS CATALOG / 02</div><h2>کاتالوگ قطعات</h2>
+   <p>برای استعلام موجودی و قیمت، محصول را انتخاب کن.</p></div>
+   <span class="gold" style="font-size:12px">LAND PART®</span>
+  </div>
+
+  <div class="shop-toolbar">
+   <div class="search-box">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="search" placeholder="جست‌وجوی قطعه، برند یا دسته‌بندی..." aria-label="جست‌وجوی محصولات">
+   </div>
+  </div>
+  <div class="filters" id="filters">
+   <button class="filter active" data-filter="همه">همه قطعات</button>
+   <button class="filter" data-filter="زیربندی SAF">زیربندی SAF</button>
+   <button class="filter" data-filter="ترمز و کالیپر">ترمز و کالیپر</button>
+   <button class="filter" data-filter="کیسه باد">کیسه باد</button>
+   <button class="filter" data-filter="تجهیزات تانکر">تجهیزات تانکر</button>
+   <button class="filter" data-filter="چراغ و برق">چراغ و برق</button>
+   <button class="filter" data-filter="تزیینات">تزیینات</button>
+   <button class="filter" data-filter="لوازم کشنده">لوازم کشنده</button>
+  </div>
+
+  <div class="products" id="productGrid">
+   <!-- Product images below are illustrative catalog images, not a claim of current stock. -->
+   <article class="product" data-category="ترمز و کالیپر" data-search="کالیپر ترمز دیسکی haldex brake caliper">
+    <div class="product-image">
+     <img src="https://www.haldex.com/globalassets/north-america/images/product_catalog_images/product/rdb802985x.jpg" alt="تصویر محصول کالیپر ترمز دیسکی Haldex" loading="lazy">
+     <span class="product-tag">سیستم ترمز</span>
+    </div>
+    <div class="product-body">
+     <h3>کالیپر ترمز دیسکی</h3>
+     <p>نمونه تصویری از مجموعه کالیپر و متعلقات ترمز خودروهای سنگین.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="کالیپر ترمز دیسکی">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="زیربندی SAF" data-search="محور زیربندی saf holland suspension axle">
+    <div class="product-image">
+     <img src="https://www.iaa-transportation.com/api/image?originalSource=%2F.imaging%2Fmte%2Fvda-theme%2F1400w%2Fdam%2Fiaa-transportation%2F2024%2Fnews%2Fweekly%2F30%2F4_Weekly_SAFHolland_SAFHolland.jpg%2Fjcr%3Acontent%2F4_Weekly_SAFHolland_SAFHolland.jpg" alt="نمونه مجموعه محور و تعلیق تریلر SAF-Holland" loading="lazy">
+     <span class="product-tag">SAF-HOLLAND</span>
+    </div>
+    <div class="product-body">
+     <h3>مجموعه محور و زیربندی</h3>
+     <p>تصویر مرجع از سیستم محور و تعلیق تریلر؛ مدل دقیق باید بررسی شود.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="مجموعه محور و زیربندی SAF">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="کیسه باد" data-search="کیسه باد تعلیق بادی air spring">
+    <div class="product-image">
+     <img src="https://safholland.com/fileadmin/user_upload/Global/Technology_images/TSS/TSS_Tech_SC5-dressed-drum-brake_01.jpg" alt="نمونه سیستم تعلیق بادی و کیسه باد تریلر" loading="lazy">
+     <span class="product-tag">تعلیق بادی</span>
+    </div>
+    <div class="product-body">
+     <h3>کیسه باد و متعلقات</h3>
+     <p>نمونه تصویر از مجموعه تعلیق بادی؛ انتخاب قطعه بر اساس مدل و شماره فنی.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="کیسه باد تریلر">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="ترمز و کالیپر" data-search="لنت ترمز brake pads">
+    <div class="product-image">
+     <img src="https://bremskerlcv.com/cdn/shop/files/C033-1.png?v=1781626360" alt="نمونه مجموعه کالیپر و اجزای سیستم ترمز" loading="lazy">
+     <span class="product-tag">ترمز</span>
+    </div>
+    <div class="product-body">
+     <h3>لنت و متعلقات ترمز</h3>
+     <p>برای تطبیق لنت، مدل محور و شماره قطعه را با فروشگاه بررسی کن.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="لنت و متعلقات ترمز">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="تجهیزات تانکر" data-search="لوازم تانکر اتصالات tank trailer fittings">
+    <div class="product-image">
+     <img src="https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=900" alt="تریلی در حال حرکت؛ تصویر نمایشی دسته تجهیزات تانکر" loading="lazy">
+     <span class="product-tag">تجهیزات تانکر</span>
+    </div>
+    <div class="product-body">
+     <h3>لوازم و اتصالات تانکر</h3>
+     <p>نوع اتصال، سایز و کاربرد قطعه را برای استعلام دقیق اعلام کن.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="لوازم و اتصالات تانکر">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="لوازم کشنده" data-search="لوازم کشنده تریلی truck accessories">
+    <div class="product-image">
+     <img src="https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=900" alt="کامیون کشنده در جاده" loading="lazy">
+     <span class="product-tag">کشنده</span>
+    </div>
+    <div class="product-body">
+     <h3>لوازم جانبی کشنده</h3>
+     <p>مدل کشنده و قطعه موردنظر را بفرست تا راهنمایی شوی.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="لوازم جانبی کشنده">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="چراغ و برق" data-search="چراغ خطر تریلر led trailer light">
+    <div class="product-image">
+     <img src="https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=900" alt="تریلی در جاده؛ تصویر نمایشی دسته چراغ و برق" loading="lazy">
+     <span class="product-tag">برق و روشنایی</span>
+    </div>
+    <div class="product-body">
+     <h3>چراغ خطر تریلر</h3>
+     <p>برای انتخاب چراغ مناسب، عکس چراغ فعلی و نوع سوکت را بفرست.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="چراغ خطر تریلر">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+
+   <article class="product" data-category="تزیینات" data-search="تزیینات کشنده لوازم ظاهری truck styling">
+    <div class="product-image">
+     <img src="https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=900" alt="کشنده قرمز؛ تصویر نمایشی دسته تزیینات" loading="lazy">
+     <span class="product-tag">تزیینات</span>
+    </div>
+    <div class="product-body">
+     <h3>تزیینات و لوازم ظاهری</h3>
+     <p>برای انتخاب مدل متناسب با کشنده، عکس و مدل خودرو را بفرست.</p>
+     <div class="product-bottom"><span class="price-label">استعلام قیمت</span><button class="btn btn-red inquire" data-product="تزیینات و لوازم ظاهری کشنده">قیمت بگیر ←</button></div>
+    </div>
+   </article>
+  </div>
+  <p id="resultCount" class="muted" style="font-size:11px;margin-top:18px" aria-live="polite"></p>
+  <p class="muted" style="font-size:11px">توجه: تصاویر مرجع برای نمایش دسته‌بندی هستند و به معنی موجودی قطعی یا تطبیق دقیق مدل قطعه نیستند. برای انتشار نهایی، تصاویر واقعی اجناس فروشگاه را جایگزین کن.</p>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="container reveal">
+  <div class="feature-panel">
+   <div class="feature-copy">
+    <div class="eyebrow">BUILT FOR THE ROAD / 03</div>
+    <h2>هر قطعه مهمه.<br><span class="gold">هر انتخاب، حساب‌شده.</span></h2>
+    <p>
+     در LAND PART می‌تونی دسته‌های مختلف قطعات تریلی و کشنده رو بررسی کنی
+     و برای قیمت، موجودی و تطبیق فنی قطعه با فروشگاه در ارتباط باشی.
+     برای جلوگیری از خرید اشتباه، شماره فنی و مدل قطعه رو هنگام استعلام بفرست.
+    </p>
+    <a class="btn btn-outline" href="#contact">ارتباط با فروشگاه ←</a>
+   </div>
+   <div class="feature-photo">
+    <img src="https://images.pexels.com/photos/27099095/pexels-photo-27099095.jpeg?auto=compress&cs=tinysrgb&w=1200"
+     alt="کامیون کشنده قرمز و تریلر در حال حرکت" loading="lazy">
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="contact" style="padding-top:10px">
+ <div class="container reveal">
+  <div class="inquiry">
+   <div>
+    <div class="eyebrow">NEED A SPECIFIC PART?</div>
+    <h2>دنبال یه قطعه خاصی؟</h2>
+    <p>اسم قطعه، عکس یا شماره فنی رو بفرست و قیمت و موجودی رو استعلام بگیر.</p>
+    <a class="btn btn-gold" id="contactWhatsApp" href="https://wa.me/989939799508" target="_blank" rel="noopener">استعلام از واتساپ ↗</a>
+   </div>
+   <div class="inquiry-mark" aria-hidden="true">LP</div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-main">
+   <div>
+    <a class="brand" href="#home">
+     <div class="brand-icon">L</div>
+     <div><div class="brand-title">LAND <span>PART</span></div><small>TRAILER PARTS</small></div>
+    </a>
+    <p>فروشگاه تخصصی قطعات تریلی، کشنده و تجهیزات جانبی. برای استعلام موجودی و قیمت با ما در ارتباط باش.</p>
+   </div>
+   <div class="footer-links">
+    <a href="#categories">دسته‌بندی‌ها</a>
+    <a href="#products">محصولات</a>
+    <a href="#about">درباره ما</a>
+    <a href="#contact">تماس با ما</a>
+   </div>
+  </div>
+  <div class="copyright">
+   <span>© <span id="year"></span> LAND PART — تمامی حقوق محفوظ است.</span>
+   <span>قدرت در جاده، اطمینان در هر قطعه.</span>
+  </div>
+ </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/989939799508" target="_blank" rel="noopener" aria-label="ارتباط با واتساپ">✆</a>
+
+<script>
+(function(){
+ "use strict";
+
+ // Intro always releases the page, even if images or network are slow.
+ const intro = document.getElementById("intro");
+ function closeIntro(){
+   if(!intro || intro.classList.contains("done")) return;
+   intro.classList.add("done");
+   document.body.classList.remove("loading");
+ }
+ window.setTimeout(closeIntro, 1900);
+ window.addEventListener("load", function(){ window.setTimeout(closeIntro, 250); }, {once:true});
+
+ document.getElementById("year").textContent = new Date().getFullYear();
+
+ // Mobile navigation
+ const menuToggle = document.getElementById("menuToggle");
+ const navLinks = document.getElementById("navLinks");
+ menuToggle.addEventListener("click", function(){
+   const isOpen = navLinks.classList.toggle("open");
+   menuToggle.setAttribute("aria-expanded", String(isOpen));
+ });
+ navLinks.querySelectorAll("a").forEach(function(link){
+   link.addEventListener("click", function(){
+     navLinks.classList.remove("open");
+     menuToggle.setAttribute("aria-expanded","false");
+   });
+ });
+
+ // Product search and category filtering
+ const searchInput = document.getElementById("searchInput");
+ const products = Array.from(document.querySelectorAll(".product"));
+ const filterButtons = Array.from(document.querySelectorAll(".filter"));
+ const resultCount = document.getElementById("resultCount");
+ let activeCategory = "همه";
+
+ function updateProducts(){
+   const query = searchInput.value.trim().toLocaleLowerCase("fa");
+   let count = 0;
+   products.forEach(function(product){
+     const category = product.dataset.category || "";
+     const searchText = (
+       product.dataset.search + " " + category + " " +
+       product.querySelector("h3").textContent + " " +
+       product.querySelector("p").textContent
+     ).toLocaleLowerCase("fa");
+     const matchesCategory = activeCategory === "همه" || category === activeCategory;
+     const matchesSearch = !query || searchText.includes(query);
+     const visible = matchesCategory && matchesSearch;
+     product.hidden = !visible;
+     if(visible) count++;
+   });
+   let empty = document.getElementById("emptyProducts");
+   if(count === 0){
+     if(!empty){
+       empty = document.createElement("div");
+       empty.id = "emptyProducts";
+       empty.className = "empty-state";
+       empty.textContent = "محصولی پیدا نشد؛ عبارت دیگری جست‌وجو کن یا از واتساپ استعلام بگیر.";
+       document.getElementById("productGrid").appendChild(empty);
+     }
+   } else if(empty){ empty.remove(); }
+   resultCount.textContent = count + " محصول نمایشی";
+ }
+ filterButtons.forEach(function(button){
+   button.addEventListener("click", function(){
+     activeCategory = button.dataset.filter;
+     filterButtons.forEach(function(b){b.classList.toggle("active", b === button);});
+     updateProducts();
+   });
+ });
+ searchInput.addEventListener("input", updateProducts);
+
+ document.querySelectorAll("[data-category-link]").forEach(function(link){
+   link.addEventListener("click", function(){
+     const wanted = link.dataset.categoryLink;
+     const exact = filterButtons.find(function(button){return button.dataset.filter === wanted;});
+     activeCategory = exact ? wanted : "همه";
+     filterButtons.forEach(function(button){
+       button.classList.toggle("active", button.dataset.filter === activeCategory);
+     });
+     updateProducts();
+   });
+ });
+
+ // WhatsApp inquiries with the selected product in the message.
+ const phone = "989939799508";
+ document.querySelectorAll(".inquire").forEach(function(button){
+   button.addEventListener("click", function(){
+     const productName = button.dataset.product || "قطعه موردنظر";
+     const message = "سلام، از سایت LAND PART پیام می‌دم.\nلطفاً قیمت و موجودی «" +
+       productName + "» رو اعلام کنید.\nدر صورت نیاز عکس یا شماره فنی رو ارسال می‌کنم.";
+     window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message), "_blank", "noopener");
+   });
+ });
+
+ // Lightweight reveal animations; no animation library required.
+ const revealItems = document.querySelectorAll(".reveal");
+ if("IntersectionObserver" in window){
+   const observer = new IntersectionObserver(function(entries){
+     entries.forEach(function(entry){
+       if(entry.isIntersecting){
+         entry.target.classList.add("visible");
+         observer.unobserve(entry.target);
+       }
+     });
+   }, {threshold:0.08});
+   revealItems.forEach(function(item){observer.observe(item);});
+ } else {
+   revealItems.forEach(function(item){item.classList.add("visible");});
+ }
+
+ // If a remote image fails, show a clean neutral fallback instead of a broken icon.
+ document.querySelectorAll("img").forEach(function(img){
+   img.addEventListener("error", function(){
+     img.style.display = "none";
+     const parent = img.parentElement;
+     if(parent && !parent.querySelector(".image-fallback")){
+       const fallback = document.createElement("div");
+       fallback.className = "image-fallback";
+       fallback.style.cssText = "height:100%;min-height:150px;display:grid;place-items:center;color:#777;background:#efefec;text-align:center;padding:18px;font-size:13px";
+       fallback.textContent = "تصویر بارگذاری نشد؛ عکس واقعی محصول را جایگزین کنید.";
+       parent.appendChild(fallback);
+     }
+   }, {once:true});
+ });
+
+ updateProducts();
+})();
+</script>
+</body>
+</html>
